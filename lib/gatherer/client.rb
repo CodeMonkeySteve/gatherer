@@ -12,6 +12,10 @@ module Gatherer
       Gatherer::Scraper.new(multiverse_id: id)
     end
 
+    def fetch_by_name(name)
+      card_from( Gatherer::Scraper.new(name: name) )
+    end
+
     def page_from(scraper)
       open(scraper.url)
     end

@@ -32,5 +32,10 @@ module Gatherer
       @subpath = "/Pages/Card/Details.aspx"
       "multiverseid=#{id}"
     end
+
+    def name(name)
+      @subpath = "/Pages/Card/Details.aspx"
+      "name=#{name}"
+    end
   end
 end
