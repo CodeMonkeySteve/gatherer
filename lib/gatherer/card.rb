@@ -81,5 +81,9 @@ module Gatherer
         illustrator: parser.illustrator
       )
     end
+
+    def image_url
+      Scraper::BASE_PATH + "/Handlers/Image.ashx?multiverseid=#{@multiverse_id}&type=card"
+    end
   end
 end
