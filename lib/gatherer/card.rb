@@ -33,7 +33,8 @@ module Gatherer
       "Green or Red" => "(G/R)"
     }
 
-    attr_reader :title,
+    attr_reader :multiverse_id,
+                :title,
                 :magic_types,
                 :mana_cost,
                 :converted_mana_cost,
@@ -47,6 +48,7 @@ module Gatherer
                 :illustrator
 
     def initialize(attributes = {})
+      @multiverse_id = attributes[:multiverse_id]
       @title = attributes[:title]
       @magic_types = attributes[:magic_types]
       @mana_cost = attributes[:mana_cost]
@@ -63,6 +65,7 @@ module Gatherer
 
     def self.new_from_parser(parser)
       new(
+        multiverse_id: parser.multiverse_id,
         title: parser.title,
         magic_types: parser.magic_types,
         mana_cost: parser.mana_cost,

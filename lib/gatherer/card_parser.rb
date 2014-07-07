@@ -4,6 +4,7 @@ module Gatherer
     attr_accessor :selectors
 
     DEFAULT_SELECTORS = {
+      multiverse_id: 'a#ctl00_ctl00_ctl00_MainContent_SubContent_SubContentAnchors_DetailsAnchors_DetailsLink',
       title: 'div#ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_nameRow',
       magic_types: 'div#ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_typeRow',
       cmc: 'div#ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_cmcRow',
@@ -30,6 +31,15 @@ module Gatherer
 
     def find_row(css)
       document.css(selectors[css])
+    end
+
+    def multiverse_id
+      row = find_row(:multiverse_id)
+      if row && row[0] && (href = row[0]['href']) && (m = href.match(/multiverseid=(\d+)/))
+        m[1].to_i
+      else
+        nil
+      end
     end
 
     def title(parsed_text = extract_title)
